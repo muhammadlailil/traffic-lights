@@ -35,7 +35,7 @@
             data() {
                 return {
                     message: 'Berhenti !',
-                    timer: 100,
+                    timer: 10,
                     activeLight: 0,
                     trafficLights: ['off', 'off', 'off'],
                     lightsOrder: ['merah', 'kuning', 'hijau'],
@@ -60,7 +60,7 @@
                         if (this.activeLight >= 3) {
                             this.activeLight = 0;
                         }
-                        this.timer = 100
+                        this.timer = 10
                     }
                 },
                 buildTrafficLights() {
