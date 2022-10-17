@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Muhammad Lailil Mahfud">
+    <meta name="nim" content="042096383">
+    <meta name="prodi" content="Sistem Informasi">
+    <title>Traffic Lights</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="min-vh-100 container d-flex justify-content-center" id="app">
+        <div class="col-12 col-md-9 col-lg-6  min-vh-100 d-flex justify-content-center flex-column">
+            <div class="row">
+                <div class="col-lg-10 col-md-9 col-xl-7 mx-auto d-flex flex-column align-items-center ">
+                    <div class="counter">
+                        {{timer}}
+                    </div>
+                    <div class="traffic-lights mb-4 d-flex flex-column">
+                        <div :class="light" v-for="light in trafficLights"></div>
+                    </div>
+                    <h1 class="fs-3 mt-6 text-bold-25">{{ message }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        createApp({
+            data() {
+                return {
+                    message: 'Berhenti !',
+                    timer: 100,
+                    activeLight: 0,
+                    trafficLights: ['off', 'off', 'off'],
+                    lightsOrder: ['merah', 'kuning', 'hijau'],
+                    instruction : ['Berhenti', 'Hati-Hati', 'Jalan']
+                }
+            },
+            mounted() {
+                this.initSession()
+            },
+            methods: {
+                initSession() {
+                    const self = this
+                    const timer = setInterval(function () {
+                        self.timer--
+                        self.changeTrafictLighs();
+                        self.buildTrafficLights();
+                    }, 1000);
+                },
+                changeTrafictLighs() {
+                    if (this.timer <= 0) {
+                        this.activeLight = this.activeLight + 1;
+                        if (this.activeLight >= 3) {
+                            this.activeLight = 0;
+                        }
+                        this.timer = 100
+                    }
+                },
+                buildTrafficLights() {
+                    const index = this.activeLight
+                    this.trafficLights = this.trafficLights.map(element => {
+                        return 'off';
+                    }); // change all to off
+                    this.trafficLights[index] = this.lightsOrder[index];
+                    this.message = this.instruction[index]
+                }
+            },
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>

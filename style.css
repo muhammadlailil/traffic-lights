@@ -1,0 +1,28 @@
+.traffic-lights {
+    background: black;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 5px;
+}
+.traffic-lights div{
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-bottom: 10px;
+}
+.traffic-lights .merah{
+    background-color: red;
+}
+.traffic-lights .kuning{
+    background-color: yellow;
+}
+.traffic-lights .hijau{
+    background-color: green;
+}
+.traffic-lights .off{
+    background-color: #58595B;
+}
+.counter{
+    font-size: 90px;
+    font-weight: bold;
+}
